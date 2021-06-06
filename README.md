@@ -8,7 +8,9 @@ If you are **new to Python** then try out this online course, [Introduction to p
 2. Clone or download this repository
 3. Open your notebook of choice
 
-We recommend running the notebooks in [JupyerLab](https://jupyterlab.readthedocs.io/en/stable/). A set of guides on how to install Python and JupyterLab is available [here](https://numeconcopenhagen.netlify.com/guides/).
+We recommend running the notebooks in [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/). 
+
+A set of guides on how to install Python and JupyterLab is available [here](https://numeconcopenhagen.netlify.com/guides/).
 
 **Use in practice:**
 
