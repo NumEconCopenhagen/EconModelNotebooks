@@ -2,6 +2,8 @@ EXPORT  void   fun_nostruct_alt /* weird by purpos */ (double * X , double *Y ,
      int N, double a, double b,/* even weirder */
      int threads, char * txt){
 
+    printf("\nfun_nostruct_alt(...)\n");
+
     #pragma omp parallel num_threads(threads)
     {
 
@@ -14,14 +16,14 @@ EXPORT  void   fun_nostruct_alt /* weird by purpos */ (double * X , double *Y ,
 
     } // omp parallel
     
-    printf("test string: %s\n",txt);
+    printf("\n");
 
 }
 
 EXPORT double I_DO_NOTHING()
 {
     
-    printf("I do nothing!");
+    printf("\nI do nothing!\n");
     return 5.0;
 
 }

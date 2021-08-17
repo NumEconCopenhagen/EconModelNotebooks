@@ -5,6 +5,7 @@
 // standard C++ libraries
 #include <windows.h>
 #include <stdio.h>
+#include <string.h>
 #include <cmath>
 #include <omp.h>
 
@@ -23,6 +24,8 @@
 
 EXPORT void fun(par_struct* par){
 
+    printf("\nfun(...)\n");
+
     #pragma omp parallel num_threads(par->threads)
     {
 
@@ -35,11 +38,32 @@ EXPORT void fun(par_struct* par){
     
     } // omp parallel
 
-    printf("test string: %s\n",par->txt);
+    printf("string-value: %s\n",par->txt);
+
+    double a = get_double_par_struct(par,par->txt);
+    printf("looked up value par->%s = %g\n",par->txt,a);
+    
+    printf("is \"%s\" in \"%s\": %s\n",par->txt,par->txtlist,(strstr(par->txt,par->txtlist) != NULL) ? "true" : "false");
+    
+    char* txtlist = (char*) malloc(strlen(par->txtlist)+1);
+    strcpy(txtlist,par->txtlist);
+
+    char *txt = strtok(txtlist,"|"); // modifies string internally
+    while(txt != NULL){
+        int value = get_int_par_struct(par,txt);
+        printf("looked up value par->%s = %d\n",txt,value);
+        txt = strtok(NULL,"|");
+    }
+    
+    printf("\n");
+
+    free(txtlist);
 
 }
 
 EXPORT void fun_nostruct(double *X, double *Y, int N, double a, double b, int threads, char *txt){
+    
+    printf("\nfun_nostruct(...)\n");
 
     #pragma omp parallel num_threads(threads)
     {
@@ -53,6 +77,10 @@ EXPORT void fun_nostruct(double *X, double *Y, int N, double a, double b, int th
 
     } // omp parallel
     
-    printf("test string: %s\n",txt);
+    printf("string-value: %s\n",txt);
+    if(strcmp(txt,"a") == 0){ printf("test was succesfull\n");        
+    } else { printf("test was not succesfull\n"); }
+
+    printf("\n");
 
 }
