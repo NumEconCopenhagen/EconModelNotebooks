@@ -4,7 +4,7 @@ If you are **new to Python** then try out this online course, [Introduction to p
 
 **To get started:**
 
-1. Install the ConSav package (requires git): ``pip install EconModel``
+1. Install the EconModel package (requires git): ``pip install EconModel``
 2. Clone or download this repository
 3. Open your notebook of choice
 
