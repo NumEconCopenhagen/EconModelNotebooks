@@ -1,16 +1,29 @@
+//////////////////////////
+// 1. external includes //
+//////////////////////////
+
+// standard C++ libraries
 #include <cstdio>
 #include <cmath>
 #include <windows.h>
 
+// other
 #include "nlopt-2.4.2-dll64\nlopt.h"
 #include "HighResTimer_class.hpp"
 #include "logs.cpp"
 
+
+///////////////
+// 2. macros //
+///////////////
+
+#define PRINT_LEVEL LONG_MAX
 #define EXPORT extern "C" __declspec(dllexport)
 
-////////////
-// STRUCT //
-////////////
+
+///////////////
+// 3. struct //
+///////////////
 
 typedef struct {
     
@@ -21,9 +34,9 @@ typedef struct {
 } solver_struct;
 
 
-////////////////////////
-// OBJECTIVE FUNCTION //
-////////////////////////
+///////////////////////////
+// 4. objective function //
+///////////////////////////
 
 double objfunc(unsigned n, const double *x, double *grad, void *solver_data_in)
 {
@@ -55,9 +68,10 @@ double objfunc(unsigned n, const double *x, double *grad, void *solver_data_in)
 
 }
 
-////////////////////////////
-// INEQUALITY CONSTRAINTS //
-////////////////////////////
+
+///////////////////////////////
+// 5. inequality constraints //
+///////////////////////////////
 
 double ineq_constraint(unsigned n, const double *x, double *grad, void *solver_data_in)
 {
@@ -80,14 +94,16 @@ double ineq_constraint(unsigned n, const double *x, double *grad, void *solver_d
                  // 
  }
 
+
 /////////////
-// GATEWAY //
+// 6. main //
 /////////////
 
 EXPORT void optimize()
 {
 
     double lb[2], ub[2], x[2];
+    logs::create("example_NLopt.log");
     
     // 1. allocate
     solver_struct* solver_data = new solver_struct;
@@ -126,7 +142,7 @@ EXPORT void optimize()
         x[1] = solver_data->m/2.0;
 
      // 3. run optimizers
-    logs::write("log_nlopt.txt",0,"");
+    logs::write("example_NLopt.log",0,"");
     double minf;
 
         HighResTimer timer;
@@ -141,19 +157,14 @@ EXPORT void optimize()
         double time = timer.StopTimer();
 
     if(flag < 0) {
-        logs::write("log_nlopt.txt",0,"nlopt failed!\n");
+        logs::write("example_NLopt.log",0,"nlopt failed!\n");
     }
     else {
-        logs::write("log_nlopt.txt",0,"found minimum at f(%g,%g) = %0.10g\n", x[0], x[1], minf);
-        logs::write("log_nlopt.txt",1,"time: %5.2f, inside %5.2f, evals = %d",time, solver_data->time, solver_data->evals);
+        logs::write("example_NLopt.log",0,"found minimum at f(%g,%g) = %0.10g\n", x[0], x[1], minf);
+        logs::write("example_NLopt.log",0,"time: %5.2f, inside %5.2f, evals = %d\n",time, solver_data->time, solver_data->evals);
     }
 
     // 4. destoy optimizers
     nlopt_destroy(opt);
 
-} // gateway
-
-int main()
-{
-
-}
+} // optimize

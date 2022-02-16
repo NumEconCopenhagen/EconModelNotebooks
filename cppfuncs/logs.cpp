@@ -5,10 +5,22 @@
 //  else text is printed to log_solve.txt
 //  if print_level == 0 the file is wiped beforehand
 
-#define PRINT_LEVEL 2
+#define PRINT_LEVEL LONG_MAX
 namespace logs {
 
-// log_solve.txt
+void create(const char *filename)
+{
+
+  #if PRINT_LEVEL >= 0
+
+    FILE* log_file;
+    log_file = fopen(filename,"w"); // write -> empty file
+    fclose(log_file);
+
+  #endif
+
+}
+
 void write(const char *filename, int print_level, const char *txt, ... )
 {
 
@@ -16,10 +28,8 @@ void write(const char *filename, int print_level, const char *txt, ... )
 
     // a. determine behavior
     FILE* log_file;
-    if(print_level == 0){ // clean
-        log_file = fopen(filename,"w");
-    } else if(print_level <= PRINT_LEVEL){ // append
-        log_file = fopen(filename,"a");
+    if(print_level <= PRINT_LEVEL){
+        log_file = fopen(filename,"a"); // append
     } else { // nothing
         return;
     }
