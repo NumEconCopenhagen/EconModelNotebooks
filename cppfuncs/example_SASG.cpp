@@ -2,14 +2,15 @@
 // 1. external includes //
 //////////////////////////
 
-// Standard C++ libraries
-#include <windows.h>
-#include<iostream>
+// standard C++ libraries
+#include <stdarg.h>
+#include <iostream>
 #define _USE_MATH_DEFINES
 #include <cmath>
  
 // Tasmanian Sparse Grids
 #include "TASMANIAN-7.0/include/TasmanianSparseGrid.hpp"
+
 
 ///////////////
 // 2. macros //
@@ -20,6 +21,7 @@
 #define BOUND(X,A,B) MIN(MAX(X,A),B)
 
 #define EXPORT extern "C" __declspec(dllexport)
+
 
 /////////////
 // 3. SASG //

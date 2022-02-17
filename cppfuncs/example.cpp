@@ -3,7 +3,7 @@
 //////////////////////////
 
 // standard C++ libraries
-#include <windows.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
 #include <cmath>
@@ -12,6 +12,7 @@
 // other
 #include "logs.cpp"
 
+
 ///////////////
 // 2. macros //
 ///////////////
@@ -19,24 +20,26 @@
 #define PRINT_LEVEL LONG_MAX
 #define EXPORT extern "C" __declspec(dllexport)
 
+
 /////////////
 // 3. main //
 /////////////
 
 #include "par_struct.cpp"
+#include "sol_struct.cpp"
 #include "example_include.cpp"
 
-EXPORT void fun(par_struct* par){
+EXPORT void fun(par_struct* par, sol_struct* sol){
 
     logs::create("example.log"); // create empty file
-    logs::write("example.log",0,"\nfun(...)\n"); // print if  print_level = 0 <= PRINT_LEVEL
+    logs::write("example.log",0,"\nfun(...)\n"); // print if print_level = 0 <= PRINT_LEVEL
 
     #pragma omp parallel num_threads(par->threads)
     {
 
     #pragma omp for   
     for(int i = 0; i < par->N; i++){
-        par->Y[i] = par->X[i]*(par->a+par->b);
+        sol->Y[i] = par->X[i]*(par->a+par->b);
     }
 
     logs::write("example.log",0,"omp_get_thread_num() = %2d, omp_get_num_procs() = %2d\n",omp_get_thread_num(),omp_get_num_procs());

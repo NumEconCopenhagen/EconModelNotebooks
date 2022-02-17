@@ -3,7 +3,7 @@
 //////////////////////////
 
 // standard C++ libraries
-#include <windows.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
 #include <cmath>
@@ -12,6 +12,7 @@
 
 // other
 #include "logs.cpp"
+
 
 ///////////////
 // 2. macros //

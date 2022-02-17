@@ -3,9 +3,9 @@
 //////////////////////////
 
 // standard C++ libraries
+#include <stdarg.h>
 #include <cstdio>
 #include <cmath>
-#include <windows.h>
 
 // other
 #include "nlopt-2.4.2-dll64\nlopt.h"
