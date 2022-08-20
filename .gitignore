@@ -109,21 +109,5 @@ venv.bak/
 
 # custom
 .vscode/
-
-00. DynamicProgramming/saved
-
-01. BufferStockModel/saved
-01. BufferStockModel/*.txt
-01. BufferStockModel/*.tex
-
-02. DurableConsumptionModel/cppfuncs/nlopt-2.4.2-dll64/
-02. DurableConsumptionModel/cppfuncs/nlopt-2.4.2-dll64.zip
-02. DurableConsumptionModel/saved
-02. DurableConsumptionModel/*.tex
-02. DurableConsumptionModel/*.dll
-
-03. G2EGM/saved
-03. G2EGM/*.txt
-03. G2EGM/*.tex
-
 *.lyx~
+*.bat
