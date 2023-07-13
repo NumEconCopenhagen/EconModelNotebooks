@@ -1,4 +1,4 @@
-EXPORT  void   fun_nostruct_alt /* weird by purpos */ (double * X , double *Y , 
+EXPORT  void   fun_nostruct_alt /* weird by purpos */ (double * X , double *Y , int * Z ,
      int N, double a, double b,/* even weirder */
      int threads, char * txt){
 

@@ -39,7 +39,7 @@ EXPORT void fun(par_struct* par, sol_struct* sol){
 
     #pragma omp for   
     for(int i = 0; i < par->N; i++){
-        sol->Y[i] = par->X[i]*(par->a+par->b);
+        sol->Y[i] = par->X[i]*(par->a+par->b)*par->Z[i];
     }
 
     logs::write("example.log",0,"omp_get_thread_num() = %2d, omp_get_num_procs() = %2d\n",omp_get_thread_num(),omp_get_num_procs());
@@ -69,7 +69,7 @@ EXPORT void fun(par_struct* par, sol_struct* sol){
 
 }
 
-EXPORT void fun_nostruct(double *X, double *Y, int N, double a, double b, int threads, char *txt){
+EXPORT void fun_nostruct(double *X, double *Y, int *Z, int N, double a, double b, int threads, char *txt){
     
     logs::write("example.log",0,"\nfun_nostruct(...)\n");
 
@@ -78,7 +78,7 @@ EXPORT void fun_nostruct(double *X, double *Y, int N, double a, double b, int th
 
     #pragma omp for      
     for(int i = 0; i < N; i++){
-        Y[i] = X[i]*(a+b);
+        Y[i] = X[i]*(a+b)*Z[i];
     }
 
     logs::write("example.log",0,"omp_get_thread_num() = %2d, omp_get_num_procs() = %2d\n",omp_get_thread_num(),omp_get_num_procs());
