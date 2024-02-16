@@ -24,7 +24,7 @@ EXPORT double I_DO_NOTHING()
 {
     
     logs::create("example.log"); // create empty file
-    logs::write("example.log",0,"\nI do nothing!\n");
+    logs::write("example.log",0,"I do nothing!");
     return 5.0;
 
 }
