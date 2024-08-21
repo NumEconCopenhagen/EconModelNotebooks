@@ -72,7 +72,6 @@ EXPORT void fun(par_struct* par, sol_struct* sol){
     // c. checking sizeif of integers
 
     logs::write("example.log",0,"sizeof(par->N) = %d\n",(int)sizeof(par->N));
-    logs::write("example.log",0,"sizeof(par->K) = %d\n",(int)sizeof(par->K));
 
 }
 
